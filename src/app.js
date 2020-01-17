@@ -4,6 +4,10 @@ import "babel-polyfill";
 
 
 import Query from './resolvers/Query'
+import Mutation from './resolvers/Mutation'
+import User from './resolvers/User'
+import Post from './resolvers/Post'
+import Subscription from './resolvers/Subscription'
 
 
 const usr = "andresBM";
@@ -37,7 +41,10 @@ const runGraphQLServer = function(context){
 const resolvers = {
 
     Query,
-  
+    Mutation,
+    User,
+    Post, 
+    Subscription, 
 }
 const server = new GraphQLServer({typeDefs: './src/schema.graphql', resolvers, context});
 server.start(() => console.log("Server started"));

@@ -1,3 +1,36 @@
-type Query{
-    ok: String!
+
+type Query {
+    getAllPosts: [Post!]
+    getAuthor(_id: ID, token: String): User!
+    getPost(user: ID, token: String, _id: ID): Post!
+}
+
+type User {
+    mail: String!
+    password: String!
+    token: ID!
+    status: Boolean!
+    post: [Post!]
+    _id: ID!
+}
+
+type Post {
+    title: String!
+    description: String!
+    date: Int!
+    user: User
+    _id: ID!
+}
+
+type Mutation{
+    addUser(mail: String, password: String, status: Boolean): User
+    login(mail: String!, password: String!): String
+    logout(_id: ID!, token: String!): User
+    removeUser(_id: ID!, token: String!): User
+    addPost(user: ID!, token: String!, title: String!, description: String!): Post
+    removePost(user: ID!, token: String!, _id: ID!): Post
+}
+
+type Subscription {
+    newPost(_id: ID!): Post!
 }
